@@ -1,0 +1,9 @@
+# Ignore everything
+/*
+
+# un-ignore the Practicals folder and its contents
+!/.gitignore
+!/Practicals
+!/Exam
+
+# Also, un-ignore this .gitignore file so it gets committed
