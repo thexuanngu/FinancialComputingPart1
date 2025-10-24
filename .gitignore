@@ -6,5 +6,6 @@
 !/Practicals
 !/Exam
 !/Libraries/Utils
+!/CMakeLists.txt
 
 # Also, un-ignore this .gitignore file so it gets committed
