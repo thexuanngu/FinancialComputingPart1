@@ -2,6 +2,9 @@
 #include "Utils/UtilityFunctions.hpp"
 #include <iostream>
 #include <fstream>
+#include <map>
+#include <cmath>
+#include <vector>
 
 using namespace std;
 using namespace exercises;

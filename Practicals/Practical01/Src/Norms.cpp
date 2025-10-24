@@ -1,4 +1,6 @@
 #include "Practical01/Practical01Exercises.hpp"
+#include <numeric>
+#include <cmath>
 
 namespace exercises {
     double Norm2(const std::vector<double> & dVec) {
@@ -18,5 +20,13 @@ namespace exercises {
 double exercises::NormInf(const std::vector<double> & dVec) {
 
     // TODO: Implement this!
-    return 0.0;
+    return std::accumulate(dVec.begin(), dVec.end(), 0.0, 
+                            [](double current_max, double element){
+                                return std::max(current_max, std::abs(element));
+                            });
+    // The [](...){...} is the C++ equivalent of a lambda function!
+    // For accumulate, the lambda function MUST take 2 arguments (normally, it just adds)
+    // Arguments of the function would be ((currently stored value), (next value in iteration))
+    // std::accumulate (in numeric) is able to 'cache' the value
+    // The function has to be a 'binary' operation
 }

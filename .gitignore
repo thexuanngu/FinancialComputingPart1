@@ -5,5 +5,6 @@
 !/.gitignore
 !/Practicals
 !/Exam
+!/Libraries/Utils
 
 # Also, un-ignore this .gitignore file so it gets committed

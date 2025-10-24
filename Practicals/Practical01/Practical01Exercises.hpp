@@ -33,12 +33,20 @@ double NormInf(const std::vector<double> & dVec);
 	  * @param iN sample size
 	  * @return Monte Carlo estimate
 	  */
-double MonteCarlo1(double dR, 
+
+	  double MonteCarlo1(double dR, 
 				   double dSigma, 
 				   double dS0, 
 				   double dK , 
 				   double dT, 
 				   unsigned long int iN);
+
+double sumTerms(const double &dR,
+                const double &dS0,
+                const double &dSigma,
+                const double &dT,
+                const double &dK); 
+
 
 
 /** Monte Carlo result structure */
