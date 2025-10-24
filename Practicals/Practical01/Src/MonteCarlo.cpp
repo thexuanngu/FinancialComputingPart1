@@ -2,6 +2,9 @@
 #include "Utils/UtilityFunctions.hpp"
 #include <random>
 
+#include <vector>
+#include <numeric>
+#include <cmath>
 
 
 namespace exercises {
@@ -29,7 +32,7 @@ namespace exercises {
                         dSummation += sumTerms(dR, dS0, dSigma, dT, dK);
                         j++;
                     }
-                    std::cout << "Debug: dSummation = " << dSummation << "i = " << j << std::endl;
+                    // DEBUG: std::cout << "Debug: dSummation = " << dSummation << "i = " << j << std::endl;
                     return exp(-dR * dT) * dSummation / iN;
                    }
 
@@ -40,36 +43,49 @@ namespace exercises {
 				   double dT, 
 				   unsigned long int iN, 
 				   Payoff call) {
-        MCResult ouput;
+        MCResult output;
+        // Fill a single samples vector with payoffs, then compute mean and
+        // standard error. The previous code used begin/end from two different
+        // temporaries which is undefined behavior and can cause a segfault.
+        std::vector<double> samples;
+        samples.reserve(iN); // Reserve space to avoid multiple allocations
 
-        ouput.mc_estimate = exp (-dR *dT) * std::accumulate(
-            std::vector<double>(iN).begin(),
-            std::vector<double>(iN).end(),
-            0.0,
-            [&](double current_sum, double element) {
-                double S_T = dS0 * exp(dT * (dR - 0.5 * pow(dSigma, 2)) + dSigma * sqrt(dT) * utils::NormalDist());
-                return current_sum + call(S_T);
-            }
-        ) / iN;
-        std::cout << "Debug: mc_estimate = " << ouput.mc_estimate << std::endl;
+        // Calculate all the payoffs
+        for (int idx = 0; idx < iN; ++idx) {
+            double Z = utils::NormalDist();
+            double S_T = dS0 * std::exp(dT * (dR - 0.5 * std::pow(dSigma, 2)) + dSigma * std::sqrt(dT) * Z);
+            samples.push_back(call(S_T));
+        }
 
-        ouput.mc_stdev = exp (-dR *dT) * sqrt((std::accumulate(
-            std::vector<double>(iN).begin(),
-            std::vector<double>(iN).end(),
-            0.0,
-            [&](double current_sum, double element) {
-                double S_T = dS0 * exp(dT * (dR - 0.5 * pow(dSigma, 2)) + dSigma * sqrt(dT) * utils::NormalDist());
-                return current_sum + call(S_T);
-            }
-        ) / iN) - pow(ouput.mc_estimate, 2)) / sqrt(iN);
-        std::cout << "Debug: mc_stdev = " << ouput.mc_stdev << std::endl;
+        // --- Calculate mean --- //
+        double sum = std::accumulate(samples.begin(), samples.end(), 0.0);
+        double mean = sum / iN; // (iN > 0) ? sum / static_cast<double>(iN) : 0.0;
+        output.mc_estimate = std::exp(-dR * dT) * mean;
+        // DEBUG: std::cout << "Debug: mc_estimate = " << output.mc_estimate << std::endl;
 
-        return ouput;
+
+        // --- Calculate standard deviation --- //
+        double sq_sum = std::accumulate(samples.begin(), samples.end(), 0.0,
+            [](double a, double v){ return a + v * v; }); // Lambda function for sum of squares; it starts with 0.0, then looks at the first element
+        double mean_sq = sq_sum / iN; // (iN > 0) ? sq_sum / static_cast<double>(iN) : 0.0;
+        double variance = mean_sq - mean * mean;
+        
+        // If there's only one case, no need for braces
+        if (variance < 0 && variance > -1e-14) variance = 0; // correct tiny FP negatives
+
+        double std_err = 0.0;
+        // If there's only one case, no need for braces; different condition from above
+        // if (iN > 0) std_err = std::sqrt(std::max(0.0, variance) / static_cast<double>(iN));  
+        std_err = std::sqrt(std::max(0.0, variance) / iN); 
+        output.mc_stdev = std::exp(-dR * dT) * std_err;
+        // DEBUG: std::cout << "Debug: mc_stdev = " << output.mc_stdev << std::endl;
+
+        return output;
         }
 
     double callAt1(double dS) {
-        return 42.0;
+        return std::max(dS - 1.0, 0.0);
     }
 }
 
-// Group of data bundled together
+// Group of data bundled together -> struct
