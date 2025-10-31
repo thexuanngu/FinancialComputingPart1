@@ -6,46 +6,50 @@
 class ComplexNumber
 {
 public:
-	ComplexNumber();
-	explicit ComplexNumber(double , double=0.0);
 
-	ComplexNumber & operator+=(const ComplexNumber &);
-	ComplexNumber & operator-=(const ComplexNumber &);
-	ComplexNumber & operator*=(const ComplexNumber &);
-	ComplexNumber & operator/=(const ComplexNumber &);
-	
-	ComplexNumber & operator+=(const double &);
-	ComplexNumber & operator-=(const double &);
-	ComplexNumber & operator*=(const double &);
-	ComplexNumber & operator/=(const double &);
+    // Constructors
+    ComplexNumber(); // Already defined!
+    explicit ComplexNumber(double , double=0.0); // Already defined!
 
-	std::ostream & print(std::ostream &) const;
+    // Incremental Operators using other complex numbers.
+    ComplexNumber & operator+=(const ComplexNumber &); // Already defined!
+    ComplexNumber & operator-=(const ComplexNumber &); // !
+    ComplexNumber & operator*=(const ComplexNumber &); // !
+    ComplexNumber & operator/=(const ComplexNumber &); // !
+
+    // Incremental operators using real numbers.
+    ComplexNumber & operator+=(const double &); // !
+    ComplexNumber & operator-=(const double &); // !
+    ComplexNumber & operator*=(const double &); // !
+    ComplexNumber & operator/=(const double &); // !
+
+    // Print statement
+    std::ostream & print(std::ostream &) const; // Already defined!
 
 private:
-	double dRe_;
-	double dIm_;
+    double dRe_;
+    double dIm_;
 };
 
-//non-members
-ComplexNumber operator+(const ComplexNumber &,const ComplexNumber &);
-ComplexNumber operator-(const ComplexNumber &,const ComplexNumber &);
-ComplexNumber operator*(const ComplexNumber &,const ComplexNumber &);
-ComplexNumber operator/(const ComplexNumber &,const ComplexNumber &);
+// Binary operators Complex + Complex
+ComplexNumber operator+(const ComplexNumber &,const ComplexNumber &); // Already defined!
+ComplexNumber operator-(const ComplexNumber &,const ComplexNumber &); // !
+ComplexNumber operator*(const ComplexNumber &,const ComplexNumber &); // !
+ComplexNumber operator/(const ComplexNumber &,const ComplexNumber &); // !
 
-ComplexNumber operator+(const ComplexNumber &,const double &);
-ComplexNumber operator-(const ComplexNumber &,const double &);
-ComplexNumber operator*(const ComplexNumber &,const double &);
-ComplexNumber operator/(const ComplexNumber &,const double &);
+// Binary operators Complex + Real
+ComplexNumber operator+(const ComplexNumber &,const double &); // !
+ComplexNumber operator-(const ComplexNumber &,const double &); // !
+ComplexNumber operator*(const ComplexNumber &,const double &); // !
+ComplexNumber operator/(const ComplexNumber &,const double &); // !
 
-ComplexNumber operator+(const double &,const ComplexNumber &);
-ComplexNumber operator-(const double &,const ComplexNumber &);
-ComplexNumber operator*(const double &,const ComplexNumber &);
-ComplexNumber operator/(const double &,const ComplexNumber &);
+// Binary operators Real + Complex
+ComplexNumber operator+(const double &,const ComplexNumber &); // !
+ComplexNumber operator-(const double &,const ComplexNumber &); // !
+ComplexNumber operator*(const double &,const ComplexNumber &); // !
+ComplexNumber operator/(const double &,const ComplexNumber &); // !
 
-std::ostream & operator<<(std::ostream &, const ComplexNumber &);
-
-
-
-
+// "Print" statement using std::cout << my_complex_number;
+std::ostream & operator<<(std::ostream &, const ComplexNumber &); // Already defined!
 //...
 #endif //_COMPLEX_NUMBER_H__

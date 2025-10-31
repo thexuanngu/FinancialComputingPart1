@@ -11,6 +11,17 @@ namespace exercises {
             // increment variable, because int is limited, and it ensures it matches
             // the size variable of dVec.size
             output += dVec[i] * dVec[i];
+
+            // Esteban's code
+            /*
+            double sumSquares = 0.0;
+            for (int idx = 0, idx < dVec.size(); idx++) {
+                sumSquares += dVec.at(idx) * dVec.at(idx);
+                --> .at() will do bounds checking!
+            }
+
+            return std::sqrt(sumSquares);
+            */
         } 
         output = std::sqrt(output);
         return output;
@@ -29,4 +40,15 @@ double exercises::NormInf(const std::vector<double> & dVec) {
     // Arguments of the function would be ((currently stored value), (next value in iteration))
     // std::accumulate (in numeric) is able to 'cache' the value
     // The function has to be a 'binary' operation
+
+    // Esteban's code
+            /*
+            double maxAbs = 0.0;
+            for (const double& value : dVec) {
+                maxAbs = std::max(maxAbs, std::abs(value));
+                maxAbs = maxAbs < std::abs(value) ? std::abs(value) : maxAbs;
+            }
+            return maxAbs;
+            */                        
+
 }
