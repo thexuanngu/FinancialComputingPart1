@@ -11,13 +11,13 @@ public:
     ComplexNumber(); // Already defined!
     explicit ComplexNumber(double , double=0.0); // Already defined!
 
-    // Incremental Operators using other complex numbers.
+    // += Complex Number
     ComplexNumber & operator+=(const ComplexNumber &); // Already defined!
     ComplexNumber & operator-=(const ComplexNumber &); // !
     ComplexNumber & operator*=(const ComplexNumber &); // !
     ComplexNumber & operator/=(const ComplexNumber &); // !
 
-    // Incremental operators using real numbers.
+    // += Real Numbers
     ComplexNumber & operator+=(const double &); // !
     ComplexNumber & operator-=(const double &); // !
     ComplexNumber & operator*=(const double &); // !

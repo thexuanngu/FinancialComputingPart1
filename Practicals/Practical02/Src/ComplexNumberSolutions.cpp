@@ -17,8 +17,6 @@ ComplexNumber & ComplexNumber::operator-=(const ComplexNumber & cnArg)
 	return *this;
 }
 
-#include "Practical02/ComplexNumber.hpp"
-
 
 
 // Incremental operators with real numbers

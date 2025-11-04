@@ -3,7 +3,8 @@
 
 # un-ignore the Practicals folder and its contents
 !/.gitignore
-!/Practicals
+!/Practicals/Practical01
+!/Practicals/Practical02
 !/Exam
 !/Libraries/Utils
 !/CMakeLists.txt

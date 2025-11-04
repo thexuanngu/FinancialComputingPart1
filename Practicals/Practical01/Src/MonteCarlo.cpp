@@ -25,6 +25,28 @@ namespace exercises {
 				   double dT, 
 				   unsigned long int iN) {
 
+
+                    /* Esteban's code
+                    double sumXi = 0.0;
+
+                    // Constants:
+                    const double A = dS0 * std::exp((dR - 0.5 * dSigma * dSigma) * dT);
+                    const double B = dSigma * std::sqrt(dT);
+
+                    for (unsigned long int idx = 0; idx < iN; idx++) {
+                        // Generate some noise
+                        const double Z = utils::NormalDist();
+                        // Simulate Stock
+                        const double S = A * std::exp(B * Z)
+                        // Compute payoff
+                        const double Xi std::max(S-dK, 0.0);
+                        sumXi += Xi;
+                    }
+
+                    const double EX = sumXi / iN
+                    return EX = std::exp(-dR * dT) * EX
+                    */
+
                     // TODO: Implement this!
                     double dSummation(0.0);
                     int j = 0;
@@ -81,6 +103,41 @@ namespace exercises {
         // DEBUG: std::cout << "Debug: mc_stdev = " << output.mc_stdev << std::endl;
 
         return output;
+
+        /*
+        Esteban's code
+
+        double sumXi = 0.0;
+        double sumXi2 = 0.0;
+
+        const double A = dS0 * std::exp((dR - 0.5 * dSigma * dSigma) * dT);
+        const double B = dSigma * std::sqrt(dT);
+
+        // Loop through
+        for (unsigned long int idx = 0; idx < iN; idx++) {
+            // Generate some noise
+            const double Z = utils::NormalDist();
+            // Simulate Stock
+            const double S = A * std::exp(B * Z)
+            // Compute payoff
+            const double Xi std::max(S-dK, 0.0);
+            sumXi += Xi;
+        }
+
+        // Caclulate E[X] and E[X^2]
+        const double EX = sumXi / iN;
+        const double EX2 = sumXi2 / iN;
+
+        // Calculate Variance
+        const double VarX = EX2 - EX * EX;
+
+        const double stdevXhat = std::sqrt(VarX);
+
+        const double discout = std::exp(-dR * dT);
+
+        return MCResult(EX * discout, stdevXhat * discount);
+        */
+
         }
 
     double callAt1(double dS) {

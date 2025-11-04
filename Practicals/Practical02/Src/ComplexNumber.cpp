@@ -1,10 +1,13 @@
 #include "Practical02/ComplexNumber.hpp"
 
-
+// Constructors
 ComplexNumber::ComplexNumber() : dRe_(0.0), dIm_(0.0) {}
 
 ComplexNumber::ComplexNumber(double dReArg, double dImArg) 
 	: dRe_(dReArg), dIm_(dImArg) {}
+
+
+// Print
 std::ostream & ComplexNumber::print(std::ostream & os) const
 {
 	return os << "(" << dRe_ << ", " << dIm_ << "i)";

@@ -6,8 +6,14 @@ namespace exercises {
         const DVector & drivingNoise, 
         const Equation & equation)
     {
-        return dVal + (drivingNoise[0] * equation[0](dTime, dVal)) + 
-        (drivingNoise[1] * equation[0](dTime, dVal));
+        const double& St = dVal;
+        const double&  t = dTime;
+        const double &Dt = drivingNoise.at(0);
+        const double &DB = drivingNoise.at(1);
+        const CoefficientFunction& a = equation.at(0);
+        const CoefficientFunction& b = equation.at(0);
+
+        return St + a(t, St) * Dt + b(t, St) * DB;
     }
 
     double milsteinStep(double dVal, double dTime,
