@@ -21,7 +21,7 @@ std::ostream & operator<<(std::ostream & os, const ComplexNumber & cnArg)
 // Multiplicative incremental operator (complex)
 ComplexNumber & ComplexNumber::operator*=(const ComplexNumber & cnArg)
 {
-	double r = dRe_ * cnArg.dRe_ - dIm_ * cnArg.dIm_;
+	double r = dRe_ * cnArg.dRe_ - dIm_ * cnArg.dIm_; 
 	double i = dRe_ * cnArg.dIm_ + dIm_ * cnArg.dRe_;
 	dRe_ = r;
 	dIm_ = i;
@@ -65,7 +65,7 @@ ComplexNumber operator*(const ComplexNumber & Arg1,
 			const ComplexNumber & Arg2)
 {
 	ComplexNumber Res(Arg1);
-	return Res *= Arg2;
+	return Res *= Arg2; // Res = Result!
 }
 
 ComplexNumber operator/(const ComplexNumber & Arg1,

@@ -19,46 +19,42 @@ namespace exercises {
         double sumXi2 = 0.0;
 
         // Simulation Variables
-        double S = 0.0;
-        double t = 0.0;
         const double delta = dT / iNumberOfSteps;
-        const double sqrtDelta = std::sqrt(delta);
-        DVector drivingNoise(delta, 0.0);
+        DVector drivingNoise = {delta, 0.0};
+        const double sqrtDelta = sqrt(delta);
 
-        // Iterate through each path
-        for (unsigned long int i = 0; i < iNumberOfPaths; i++) {
-                        // Simulate each stock's final price
-                        double & S = dS0; // Reset
-                        // Loop through paths
-                        for (unsigned long int step = 0; step < iNumberOfSteps; step++) {
-                            // Generate Noise
-                            drivingNoise.at(1) = utils::NormalDist() * sqrtDelta;
+        for (unsigned long int i = 0; i < iNumberOfPaths; ++i) {
+            // 1. Simulate S (now it's a bit more complex).
+            // S starts at S0, time t starts at 0
+            double S = dS0;
+            double t = 0.0;
 
-                            // Simulate Stock Price
-                            S = numericalStep(S, t, drivingNoise, equation);
+            for (unsigned long step = 0; step < iNumberOfSteps; ++step) {
+                // Noise
+                drivingNoise.at(1) = utils::NormalDist() * sqrtDelta;
 
-                            // Time passes
-                            t+= delta;
-                        }
+                // Stock evolves
+                S = numericalStep(S, t, drivingNoise, equation);
 
-                        // Calculate payoff
-                        const double Xi = payoffFunction(S);
+                // Advance time
+                t += delta;
+            }
 
-                        // Caclulate the Data
-                        sumXi += Xi;
-                        sumXi2 += Xi * Xi;
-                    }
-            
-        // Calculate E[X], E[X^2]
+            // 2. Calculate payoff Xi
+            const double Xi = payoffFunction(S);
+            sumXi += Xi;
+            sumXi2 += Xi * Xi;
+        }
+
+        // 3. Estimate E[X], E[X^2]
         const double EX = sumXi / iNumberOfPaths;
         const double EX2 = sumXi2 / iNumberOfPaths;
 
-        // Calculate standard deviation of simulated paths
-        const double VarX = EX2 - EX * EX;
-        const double stdevXhat = std::sqrt(VarX / iNumberOfPaths);
+        // 4. Calculate Standard deviation of estimate
+        const double stdDev = sqrt( (EX2 - EX*EX) /iNumberOfPaths);
 
-        // Transform it into present value
-        const double discount = std::exp(-dR * dT);
-        return MCResult{EX * discount, stdevXhat * discount};
+        // 5. Transform future value to present value
+        const double discount = exp(-dR * dT);
+        return MCResult{EX * discount, stdDev * discount};
     }
 }

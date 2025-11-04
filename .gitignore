@@ -1,10 +1,10 @@
 # Ignore everything
 /*
+/Practicals/Practical02Solutions
 
 # un-ignore the Practicals folder and its contents
 !/.gitignore
-!/Practicals/Practical01
-!/Practicals/Practical02
+!/Practicals
 !/Exam
 !/Libraries/Utils
 !/CMakeLists.txt
