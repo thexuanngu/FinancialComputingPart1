@@ -6,7 +6,7 @@ CXX_DEFINES = -DCOURSE_OUTPUT_DIR=\"/Users/main/Desktop/OxfordIntro/FinancialCom
 
 CXX_INCLUDES = -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/boostRoot -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/Lectures -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/Libraries -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/Libraries/googletest_1_14 -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/Practicals -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/SampleExam2015 -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/Exam -I/Users/main/Desktop/OxfordIntro/FinancialComputing/CppCourse/Sketches
 
-CXX_FLAGSarm64 = -g -std=c++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk -mmacosx-version-min=15.6
+CXX_FLAGSarm64 = -g -std=c++14 -arch arm64 -mmacosx-version-min=15.6
 
-CXX_FLAGS = -g -std=c++14 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.0.sdk -mmacosx-version-min=15.6
+CXX_FLAGS = -g -std=c++14 -arch arm64 -mmacosx-version-min=15.6
 
