@@ -39,9 +39,22 @@ TEST(Swapping, Same){
     unsigned int a = i;
     unsigned int b = i;
     swap(a, b);
-    
+
     EXPECT_EQ(i, a);
     EXPECT_EQ(i, b);
+  }
+}
+
+TEST(Swapping, Different){
+  for(unsigned int i(0); i<200; i++) {
+    for(unsigned int j(0); j<200; j++) {
+        unsigned int a = i;
+        unsigned int b = j;
+        swap(a, b);
+
+        EXPECT_EQ(j, a);
+        EXPECT_EQ(i, b);
+    }
   }
 }
 #endif //PRACTICAL05_TEST_HPP

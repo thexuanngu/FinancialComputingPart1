@@ -68,7 +68,7 @@ add_subdirectory(Practicals/Practical05)
 #add_subdirectory(Practicals/Practical05Solutions)
 add_subdirectory(Practicals/Practical06)
 #add_subdirectory(Practicals/Practical06Solutions)
-#add_subdirectory(Practicals/Practical07)
+add_subdirectory(Practicals/Practical07)
 #add_subdirectory(Practicals/Practical07Solutions)
 
 # Sample exam
