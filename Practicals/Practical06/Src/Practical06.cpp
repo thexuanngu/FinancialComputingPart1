@@ -63,6 +63,8 @@ int main()
 	mystream << "InnerProduct initialized with " << bvBase << " and applied to " << bvArg1 << " yields " << innerProduct(bvArg1) << "\n";
 	mystream << "\n";
 
+	((callPayoff + basketPayoff) - 1.0)(bvArg1);
+
 	myfile.close();
 	return 0;
 }

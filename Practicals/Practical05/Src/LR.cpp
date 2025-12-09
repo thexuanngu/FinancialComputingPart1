@@ -25,7 +25,7 @@ namespace exercises {
             BVector b = prod(PhiT, yVals);
 
 
-            // Look at Lecture 9 for LU!
+            // Look at Lecture 9 for LU! -> This is basically doing the calculation for the regression coefficients
             boost::numeric::ublas::lu_factorize(A);
             boost::numeric::ublas::lu_substitute<const BMatrix, BVector>(A, b);
 

@@ -1,12 +1,17 @@
 # Ignore everything
 /*
-/Practicals/Practical02Solutions
 
 # un-ignore the Practicals folder and its contents
-!/.gitignore
 !/Practicals
 !/Exam
 !/Libraries/Utils
 !/CMakeLists.txt
+
+/Practicals/Practical01/Practical01Solutions.zip
+/Practicals/Practical02Solutions
+/Practicals/Practical03/Practical03Solutions.zip
+/Practicals/Practical04/Practical04Solutions.zip
+/Practicals/Practical05/Practical05Solutions.zip
+/Practicals/Practical06/Practical06Solutions.zip
 
 # Also, un-ignore this .gitignore file so it gets committed
